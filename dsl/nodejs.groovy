@@ -13,6 +13,32 @@ job('NodeJS example') {
                          // Manage Jenkins -> Configure Tools -> NodeJS Installations -> Name
     }
     steps {
-        shell("npm install")
+        shell("npm install")        
+    }
+}
+
+job('Second Job') {
+    scm {
+        git('https://github.com/alizako/docker-cicd') {  node -> // is hudson.plugins.git.GitSCM
+            node / gitConfigName('DSL User')
+            node / gitConfigEmail('jenkins-dsl@newtech.academy')
+        }
+    }
+    triggers {
+        scm('H/5 * * * *')
+    }
+    wrappers {
+        nodejs('nodejs-new') 
+    }
+    steps {
+        dockerBuildAndPublish {
+            repositoryName('alizako/docker-cicd')
+            tag('${GIT_REVISION,length=9}')
+            registryCredentials('dockerhub')
+            forcePull(false)
+            forceTag(false)
+            createFingerprints(false)
+            skipDecorate()
+        }
     }
 }
