@@ -31,9 +31,9 @@ job('Second Job') {
         nodejs('nodejs') 
     }
     steps {
-        shell(echo "unit test")
-        shell(echo "sonar")
-        shell(echo "integration")
+        shell("echo unit test")
+        shell("echo sonar")
+        shell("echo integration")
         shell("npm install")  
         dockerBuildAndPublish {
             repositoryName('alizako/docker-cicd')
