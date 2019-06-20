@@ -36,7 +36,7 @@ job('Second Job') {
         shell("echo integration")
         shell("npm install")  
         dockerBuildAndPublish {
-            repositoryName('alizako/docker-cicd')
+            repositoryName('alizak/docker-cicd')
             tag('${GIT_REVISION,length=9}')
             registryCredentials('dockerhub')
             forcePull(false)
