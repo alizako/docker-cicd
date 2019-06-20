@@ -28,7 +28,7 @@ job('Second Job') {
         scm('H/5 * * * *')
     }
     wrappers {
-        nodejs('nodejs-new') 
+        nodejs('nodejs') 
     }
     steps {
         shell(echo "unit test")
