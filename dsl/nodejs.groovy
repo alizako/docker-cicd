@@ -31,6 +31,10 @@ job('Second Job') {
         nodejs('nodejs-new') 
     }
     steps {
+        shell(echo "unit test")
+        shell(echo "sonar")
+        shell(echo "integration")
+        shell("npm install")  
         dockerBuildAndPublish {
             repositoryName('alizako/docker-cicd')
             tag('${GIT_REVISION,length=9}')
