@@ -16,6 +16,7 @@ con.connect(function(err){
   });
 });
 
+
 // Request handling
 app.get('/', function (req, res) {
   // create table if not exist
